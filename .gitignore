@@ -1,0 +1,8 @@
+# Upstream sources, only needed when rebuilding the themes
+/surfn/
+/paper-icon-theme/
+/paper-gtk-theme/
+
+# Python bytecode
+__pycache__/
+*.pyc

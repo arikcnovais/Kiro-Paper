@@ -1,0 +1,61 @@
+/* Kiro-Paper - dark palette
+ *
+ * Paper's original dark colours: deep blue-grey surfaces, soft blue-grey
+ * text and the same muted selection accent.
+ */
+
+@define-color theme_bg_color #263238;
+@define-color theme_fg_color #a8b5ba;
+@define-color theme_base_color #384952;
+@define-color theme_text_color #a8b5ba;
+@define-color theme_selected_bg_color #4c636e;
+@define-color theme_selected_fg_color #ffffff;
+
+@define-color insensitive_bg_color #2f3b41;
+@define-color insensitive_fg_color #6e7f87;
+@define-color insensitive_base_color #334147;
+
+@define-color borders #1e272b;
+@define-color unfocused_borders #334147;
+@define-color separator #1e272b;
+
+@define-color headerbar_bg_color #263238;
+@define-color headerbar_fg_color rgba(255, 255, 255, 0.85);
+@define-color headerbar_backdrop_color #1e282c;
+@define-color headerbar_border_color #1a2226;
+@define-color headerbar_shade_color rgba(0, 0, 0, 0.35);
+
+@define-color card_bg_color #2f3f47;
+@define-color card_fg_color #a8b5ba;
+@define-color menu_bg_color #2b3a41;
+@define-color menu_fg_color #a8b5ba;
+@define-color popover_bg_color #2b3a41;
+@define-color popover_fg_color #a8b5ba;
+
+@define-color button_bg_color #31434c;
+@define-color button_hover_bg_color #3a4d56;
+@define-color button_active_bg_color #263238;
+
+@define-color accent_color #4c636e;
+@define-color accent_hover_color #5a7480;
+@define-color accent_active_color #3d5059;
+@define-color link_color #8fb3c0;
+@define-color link_visited_color #b39bc4;
+
+@define-color warning_color #f5a623;
+@define-color error_color #e57373;
+@define-color success_color #81c784;
+@define-color question_color #4fc3f7;
+
+@define-color tooltip_bg_color #111111;
+@define-color tooltip_fg_color #ffffff;
+@define-color osd_bg_color rgba(18, 24, 27, 0.95);
+@define-color osd_fg_color #ffffff;
+
+@define-color scrollbar_slider #5c6e77;
+@define-color scrollbar_slider_hover #788d98;
+@define-color scrollbar_slider_active #93a8b2;
+
+@define-color shade_color rgba(0, 0, 0, 0.18);
+@define-color strong_shade_color rgba(0, 0, 0, 0.32);
+@define-color highlight_color rgba(255, 255, 255, 0.12);

@@ -1,0 +1,67 @@
+/* Kiro-Paper - light palette
+ *
+ * The colours are the ones Paper has used since 2014:
+ *   surface     #ffffff / #efefef
+ *   text        #555555
+ *   headerbar   #636e73 (backdrop #454d50)
+ *   selection   #9fb0b9
+ *
+ * Kiro-Paper keeps them (rather than inventing a new accent) so existing
+ * Paper users get the same look with modern GTK 3 and GTK 4 widgets.
+ */
+
+@define-color theme_bg_color #efefef;
+@define-color theme_fg_color #555555;
+@define-color theme_base_color #ffffff;
+@define-color theme_text_color #555555;
+@define-color theme_selected_bg_color #9fb0b9;
+@define-color theme_selected_fg_color #ffffff;
+
+@define-color insensitive_bg_color #e6e6e6;
+@define-color insensitive_fg_color #9a9a9a;
+@define-color insensitive_base_color #f6f6f6;
+
+@define-color borders #c9c9c9;
+@define-color unfocused_borders #d7d7d7;
+@define-color separator #dedede;
+
+@define-color headerbar_bg_color #636e73;
+@define-color headerbar_fg_color #ffffff;
+@define-color headerbar_backdrop_color #454d50;
+@define-color headerbar_border_color #4f585c;
+@define-color headerbar_shade_color rgba(0, 0, 0, 0.24);
+
+@define-color card_bg_color #ffffff;
+@define-color card_fg_color #555555;
+@define-color menu_bg_color #ffffff;
+@define-color menu_fg_color #555555;
+@define-color popover_bg_color #ffffff;
+@define-color popover_fg_color #555555;
+
+@define-color button_bg_color #e4e4e4;
+@define-color button_hover_bg_color #ededed;
+@define-color button_active_bg_color #d9d9d9;
+
+@define-color accent_color #9fb0b9;
+@define-color accent_hover_color #8ba0aa;
+@define-color accent_active_color #7d929c;
+@define-color link_color #5f7480;
+@define-color link_visited_color #7a5f80;
+
+@define-color warning_color #f57c00;
+@define-color error_color #d32f2f;
+@define-color success_color #2e7d32;
+@define-color question_color #4ab3e4;
+
+@define-color tooltip_bg_color #333333;
+@define-color tooltip_fg_color #ffffff;
+@define-color osd_bg_color rgba(45, 45, 45, 0.94);
+@define-color osd_fg_color #ffffff;
+
+@define-color scrollbar_slider #b9b9b9;
+@define-color scrollbar_slider_hover #a3a3a3;
+@define-color scrollbar_slider_active #8c8c8c;
+
+@define-color shade_color rgba(0, 0, 0, 0.08);
+@define-color strong_shade_color rgba(0, 0, 0, 0.16);
+@define-color highlight_color rgba(255, 255, 255, 0.45);

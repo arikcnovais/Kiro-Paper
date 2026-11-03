@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Kiro-Paper
+Comment=Paper's flat style, modernised for GTK 3, GTK 4 and Xfce
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Kiro-Paper
+IconTheme=Surfn-Paper
+ButtonLayout=menu:minimize,maximize,close

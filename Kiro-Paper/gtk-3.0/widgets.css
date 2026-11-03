@@ -1,0 +1,1767 @@
+/* Kiro-Paper - GTK 3.24 widget styles
+ *
+ * A modernised continuation of Paper's GTK 3 theme.  Paper's original CSS
+ * targeted GTK 3.14-3.18; this file uses the GTK 3.20+ CSS node names so
+ * current GTK 3 applications (Thunar, Xfce Settings, GIMP, Firefox, ...)
+ * get the intended look instead of falling back to Adwaita.
+ */
+
+/* ------------------------------------------------------------------ *
+ * Base                                                               *
+ * ------------------------------------------------------------------ */
+
+* {
+    padding: 0;
+    background-clip: padding-box;
+    outline-color: alpha(@theme_fg_color, 0.35);
+    outline-style: dashed;
+    outline-offset: 2px;
+
+    -GtkToolButton-icon-spacing: 4;
+    -GtkTextView-error-underline-color: @error_color;
+    -GtkCheckButton-indicator-size: 16;
+    -GtkScrolledWindow-scrollbar-spacing: 0;
+    -GtkToolItemGroup-expander-size: 11;
+    -GtkTreeView-expander-size: 11;
+    -GtkTreeView-horizontal-separator: 4;
+    -GtkIMHtml-hyperlink-color: @link_color;
+    -GtkHTML-link-color: @link_color;
+    -WnckTasklist-fade-overlay-rect: 0;
+    -GtkWindow-resize-grip-width: 0;
+    -GtkWindow-resize-grip-height: 0;
+}
+
+window,
+.background {
+    background-color: @theme_bg_color;
+    color: @theme_fg_color;
+}
+
+window:backdrop,
+.background:backdrop {
+    background-color: shade(@theme_bg_color, 0.99);
+    color: alpha(@theme_fg_color, 0.85);
+}
+
+label {
+    color: inherit;
+}
+
+label:disabled,
+label:disabled:backdrop {
+    color: @insensitive_fg_color;
+}
+
+label.dim-label,
+.dim-label {
+    color: alpha(@theme_fg_color, 0.55);
+}
+
+label.error {
+    color: @error_color;
+}
+
+label.warning {
+    color: @warning_color;
+}
+
+label.success {
+    color: @success_color;
+}
+
+label.separator {
+    color: alpha(@theme_fg_color, 0.55);
+}
+
+selection {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+*:selected,
+*:selected:focus {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+*:selected:backdrop {
+    background-color: shade(@theme_selected_bg_color, 1.08);
+    color: @theme_selected_fg_color;
+}
+
+*:disabled {
+    color: @insensitive_fg_color;
+    border-color: shade(@borders, 1.05);
+}
+
+*:disabled:backdrop {
+    color: alpha(@insensitive_fg_color, 0.8);
+}
+
+.gtkstyle-fallback {
+    background-color: @theme_bg_color;
+    color: @theme_fg_color;
+}
+
+.gtkstyle-fallback:hover {
+    background-color: shade(@theme_bg_color, 1.06);
+}
+
+.gtkstyle-fallback:active {
+    background-color: shade(@theme_bg_color, 0.94);
+}
+
+.gtkstyle-fallback:disabled {
+    background-color: @insensitive_bg_color;
+    color: @insensitive_fg_color;
+}
+
+.gtkstyle-fallback:selected {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+image {
+    color: inherit;
+}
+
+image:disabled {
+    opacity: 0.5;
+}
+
+frame > border,
+.frame {
+    border: 1px solid @borders;
+    border-radius: 3px;
+    background-color: @theme_base_color;
+}
+
+frame.flat > border,
+.frame.flat {
+    border: none;
+    background: none;
+}
+
+separator {
+    min-width: 1px;
+    min-height: 1px;
+    background-color: @separator;
+    border: none;
+}
+
+separator.horizontal {
+    min-height: 1px;
+    min-width: 0;
+}
+
+separator.vertical {
+    min-width: 1px;
+    min-height: 0;
+}
+
+paned > separator {
+    min-width: 1px;
+    min-height: 1px;
+    background-color: @borders;
+}
+
+paned > separator:hover {
+    background-color: @theme_selected_bg_color;
+}
+
+/* ------------------------------------------------------------------ *
+ * Windows, dialogs and CSD decorations                               *
+ * ------------------------------------------------------------------ */
+
+decoration {
+    border-radius: 4px 4px 0 0;
+    box-shadow:
+        0 3px 9px 1px alpha(black, 0.32),
+        0 0 0 1px alpha(black, 0.10);
+}
+
+decoration:backdrop {
+    box-shadow:
+        0 3px 7px 1px alpha(black, 0.20),
+        0 0 0 1px alpha(black, 0.08);
+}
+
+window.csd {
+    border-radius: 4px 4px 0 0;
+}
+
+window.ssd {
+    border: 1px solid @borders;
+}
+
+dialog,
+messagedialog {
+    background-color: @theme_bg_color;
+}
+
+messagedialog .titlebar,
+messagedialog .dialog-action-area {
+    background-color: @theme_bg_color;
+}
+
+messagedialog .dialog-action-area button {
+    border-radius: 0;
+    border-width: 1px 0 0 0;
+    border-color: @borders;
+    padding: 9px;
+}
+
+messagedialog .dialog-action-area button:first-child {
+    border-radius: 0 0 0 4px;
+}
+
+messagedialog .dialog-action-area button:last-child {
+    border-radius: 0 0 4px 0;
+}
+
+/* ------------------------------------------------------------------ *
+ * Header bars                                                        *
+ * ------------------------------------------------------------------ */
+
+headerbar,
+.titlebar:not(headerbar) {
+    min-height: 36px;
+    padding: 0 6px;
+    border-width: 0 0 1px 0;
+    border-color: @headerbar_border_color;
+    border-style: solid;
+    background-color: @headerbar_bg_color;
+    background-image: none;
+    color: @headerbar_fg_color;
+    box-shadow: inset 0 1px alpha(white, 0.06);
+}
+
+headerbar:backdrop,
+.titlebar:not(headerbar):backdrop {
+    background-color: @headerbar_backdrop_color;
+    color: alpha(@headerbar_fg_color, 0.72);
+    box-shadow: none;
+}
+
+headerbar .title,
+.titlebar .title {
+    padding: 0 12px;
+    font-weight: bold;
+    font-size: 11pt;
+    color: @headerbar_fg_color;
+}
+
+headerbar .title:backdrop,
+.titlebar .title:backdrop {
+    color: alpha(@headerbar_fg_color, 0.72);
+}
+
+headerbar .subtitle,
+.titlebar .subtitle {
+    padding: 0 12px;
+    font-size: 9pt;
+    color: alpha(@headerbar_fg_color, 0.75);
+}
+
+headerbar .subtitle:backdrop,
+.titlebar .subtitle:backdrop {
+    color: alpha(@headerbar_fg_color, 0.55);
+}
+
+headerbar separator,
+.titlebar separator {
+    background-color: alpha(@headerbar_fg_color, 0.15);
+}
+
+headerbar entry,
+.titlebar entry {
+    min-height: 26px;
+    border-color: alpha(black, 0.22);
+    background-color: alpha(white, 0.12);
+    color: @headerbar_fg_color;
+    caret-color: @headerbar_fg_color;
+}
+
+headerbar entry:focus,
+.titlebar entry:focus {
+    border-color: alpha(white, 0.55);
+    box-shadow: inset 0 0 0 1px alpha(white, 0.25);
+}
+
+headerbar entry image,
+.titlebar entry image {
+    color: alpha(@headerbar_fg_color, 0.75);
+}
+
+headerbar button,
+.titlebar button {
+    min-height: 28px;
+    min-width: 28px;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    color: @headerbar_fg_color;
+    text-shadow: none;
+}
+
+headerbar button:hover,
+.titlebar button:hover {
+    background-color: alpha(white, 0.12);
+    border-color: transparent;
+    box-shadow: none;
+}
+
+headerbar button:active,
+headerbar button:checked,
+.titlebar button:active,
+.titlebar button:checked {
+    background-color: alpha(black, 0.16);
+    border-color: transparent;
+    box-shadow: inset 0 -2px 0 0 alpha(@headerbar_fg_color, 0.85);
+}
+
+headerbar button:disabled,
+.titlebar button:disabled {
+    color: alpha(@headerbar_fg_color, 0.45);
+    background-color: transparent;
+}
+
+headerbar button:focus,
+.titlebar button:focus {
+    outline: 1px dashed alpha(@headerbar_fg_color, 0.55);
+    outline-offset: -3px;
+}
+
+headerbar button.suggested-action,
+.titlebar button.suggested-action {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+    border-radius: 3px;
+}
+
+headerbar button.destructive-action,
+.titlebar button.destructive-action {
+    background-color: @error_color;
+    color: @theme_selected_fg_color;
+    border-radius: 3px;
+}
+
+headerbar .stack-switcher > button > label,
+.titlebar .stack-switcher > button > label {
+    padding: 0 4px;
+}
+
+windowcontrols button,
+headerbar windowcontrols button {
+    min-width: 24px;
+    min-height: 24px;
+    padding: 2px;
+    border-radius: 50%;
+}
+
+windowcontrols button:hover,
+headerbar windowcontrols button:hover {
+    background-color: alpha(white, 0.16);
+}
+
+windowcontrols button.close:hover,
+headerbar windowcontrols button.close:hover {
+    background-color: #d9534f;
+    color: white;
+}
+
+/* ------------------------------------------------------------------ *
+ * Buttons                                                            *
+ * ------------------------------------------------------------------ */
+
+button {
+    min-height: 24px;
+    min-width: 16px;
+    padding: 4px 9px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: @button_bg_color;
+    background-image: none;
+    color: @theme_fg_color;
+    box-shadow: none;
+    text-shadow: none;
+    transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+button:hover {
+    background-color: @button_hover_bg_color;
+    border-color: @borders;
+}
+
+button:active,
+button:checked {
+    background-color: @button_active_bg_color;
+    border-color: shade(@borders, 0.92);
+    box-shadow: inset 0 1px 2px alpha(black, 0.08);
+}
+
+button:checked:hover {
+    background-color: shade(@button_active_bg_color, 1.03);
+}
+
+button:disabled {
+    background-color: @insensitive_bg_color;
+    border-color: transparent;
+    color: @insensitive_fg_color;
+    box-shadow: none;
+}
+
+button:disabled:checked,
+button:disabled:active {
+    background-color: shade(@insensitive_bg_color, 0.94);
+}
+
+button:focus {
+    border-color: @accent_color;
+    box-shadow: 0 0 0 2px alpha(@accent_color, 0.35);
+}
+
+button:focus:active,
+button:focus:checked {
+    box-shadow: inset 0 1px 2px alpha(black, 0.08), 0 0 0 2px alpha(@accent_color, 0.35);
+}
+
+button.flat,
+button.flat:hover,
+button.flat:active,
+button.flat:checked {
+    background-color: transparent;
+    background-image: none;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+button.flat:hover {
+    background-color: alpha(@theme_fg_color, 0.08);
+}
+
+button.flat:active,
+button.flat:checked {
+    background-color: alpha(@theme_fg_color, 0.14);
+}
+
+button.flat:focus {
+    border-color: transparent;
+    box-shadow: inset 0 0 0 1px alpha(@accent_color, 0.75);
+}
+
+button.text-button {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+button.image-button {
+    padding: 4px;
+}
+
+button.circular {
+    min-width: 28px;
+    min-height: 28px;
+    padding: 0;
+    border-radius: 100%;
+}
+
+button.circular.flat {
+    border-radius: 100%;
+}
+
+button.suggested-action {
+    background-color: @theme_selected_bg_color;
+    border-color: shade(@theme_selected_bg_color, 0.9);
+    color: @theme_selected_fg_color;
+}
+
+button.suggested-action:hover {
+    background-color: @accent_hover_color;
+    border-color: shade(@accent_hover_color, 0.9);
+}
+
+button.suggested-action:active,
+button.suggested-action:checked {
+    background-color: @accent_active_color;
+    border-color: shade(@accent_active_color, 0.9);
+}
+
+button.destructive-action {
+    background-color: @error_color;
+    border-color: shade(@error_color, 0.85);
+    color: white;
+}
+
+button.destructive-action:hover {
+    background-color: shade(@error_color, 1.08);
+}
+
+button.destructive-action:active,
+button.destructive-action:checked {
+    background-color: shade(@error_color, 0.9);
+}
+
+button.osd {
+    background-color: @osd_bg_color;
+    color: @osd_fg_color;
+    border-color: alpha(white, 0.12);
+}
+
+button.osd:hover {
+    background-color: shade(@osd_bg_color, 1.18);
+}
+
+button:link,
+button:visited,
+button:link:hover,
+button:visited:hover,
+button:link:active,
+button:visited:active {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: @link_color;
+}
+
+button:link:visited,
+button:visited {
+    color: @link_visited_color;
+}
+
+button:link > label,
+button:visited > label {
+    text-decoration-line: underline;
+}
+
+.linked > button,
+.linked > entry,
+.linked > combobox > box > button {
+    border-radius: 0;
+    border-right-width: 0;
+}
+
+.linked > button:first-child,
+.linked > entry:first-child,
+.linked > combobox:first-child > box > button {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.linked > button:last-child,
+.linked > entry:last-child,
+.linked > combobox:last-child > box > button {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-right-width: 1px;
+}
+
+.linked > button:only-child,
+.linked > entry:only-child,
+.linked > combobox:only-child > box > button {
+    border-radius: 4px;
+    border-right-width: 1px;
+}
+
+.linked.vertical > button,
+.linked.vertical > entry {
+    border-radius: 0;
+    border-bottom-width: 0;
+}
+
+.linked.vertical > button:first-child,
+.linked.vertical > entry:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.linked.vertical > button:last-child,
+.linked.vertical > entry:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-width: 1px;
+}
+
+/* ------------------------------------------------------------------ *
+ * Entries, spin buttons and combo boxes                              *
+ * ------------------------------------------------------------------ */
+
+entry {
+    min-height: 26px;
+    padding: 4px 7px;
+    border: 1px solid @borders;
+    border-radius: 3px;
+    background-color: @theme_base_color;
+    background-image: none;
+    color: @theme_text_color;
+    caret-color: @theme_text_color;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+entry:focus {
+    border-color: @theme_selected_bg_color;
+    box-shadow: inset 0 0 0 1px @theme_selected_bg_color;
+}
+
+entry:disabled {
+    background-color: @insensitive_base_color;
+    border-color: shade(@borders, 1.06);
+    color: @insensitive_fg_color;
+}
+
+entry:backdrop {
+    background-color: shade(@theme_base_color, 0.99);
+    border-color: @unfocused_borders;
+    color: alpha(@theme_text_color, 0.85);
+}
+
+entry:drop(active) {
+    border-color: @theme_selected_bg_color;
+    box-shadow: inset 0 0 0 1px @theme_selected_bg_color;
+}
+
+entry image {
+    color: alpha(@theme_fg_color, 0.7);
+}
+
+entry image:hover {
+    color: @theme_fg_color;
+}
+
+entry image:active {
+    color: @theme_selected_bg_color;
+}
+
+entry selection {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+entry progress {
+    margin: 1px;
+    border-radius: 2px;
+    background-color: alpha(@theme_selected_bg_color, 0.35);
+}
+
+entry.error {
+    border-color: @error_color;
+    color: @error_color;
+}
+
+entry.error:focus {
+    box-shadow: inset 0 0 0 1px @error_color;
+}
+
+entry.warning {
+    border-color: @warning_color;
+    color: @theme_text_color;
+}
+
+entry.search {
+    border-radius: 14px;
+}
+
+spinbutton {
+    border: 1px solid @borders;
+    border-radius: 3px;
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+}
+
+spinbutton entry {
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+spinbutton button {
+    min-height: 22px;
+    min-width: 22px;
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    border: none;
+    color: alpha(@theme_fg_color, 0.75);
+}
+
+spinbutton button:hover {
+    background-color: alpha(@theme_fg_color, 0.08);
+    color: @theme_fg_color;
+}
+
+spinbutton button:active {
+    background-color: alpha(@theme_fg_color, 0.14);
+}
+
+spinbutton:focus {
+    border-color: @theme_selected_bg_color;
+    box-shadow: inset 0 0 0 1px @theme_selected_bg_color;
+}
+
+combobox button {
+    padding: 4px 8px;
+}
+
+combobox arrow {
+    min-width: 12px;
+    min-height: 12px;
+    color: alpha(@theme_fg_color, 0.75);
+}
+
+combobox entry {
+    border-radius: 3px 0 0 3px;
+}
+
+combobox entry + button {
+    border-radius: 0 3px 3px 0;
+}
+
+/* ------------------------------------------------------------------ *
+ * Check buttons and radio buttons                                    *
+ * ------------------------------------------------------------------ */
+
+checkbutton,
+radiobutton {
+    padding: 2px;
+    color: @theme_fg_color;
+}
+
+checkbutton check,
+treeview.view check {
+    min-width: 16px;
+    min-height: 16px;
+    padding: 0;
+    border: 1px solid @borders;
+    border-radius: 3px;
+    background-color: @theme_base_color;
+    background-image: none;
+    color: transparent;
+    transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+checkbutton check:hover,
+treeview.view check:hover {
+    border-color: shade(@borders, 0.82);
+}
+
+checkbutton check:checked,
+treeview.view check:checked {
+    background-color: @theme_selected_bg_color;
+    border-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+    -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
+}
+
+checkbutton check:indeterminate,
+treeview.view check:indeterminate {
+    background-color: @theme_selected_bg_color;
+    border-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+    -gtk-icon-source: -gtk-icontheme("list-remove-symbolic");
+}
+
+checkbutton check:disabled,
+treeview.view check:disabled {
+    background-color: @insensitive_base_color;
+    border-color: shade(@borders, 1.05);
+}
+
+checkbutton check:checked:disabled,
+treeview.view check:checked:disabled {
+    background-color: alpha(@theme_selected_bg_color, 0.5);
+    border-color: transparent;
+}
+
+radiobutton radio,
+treeview.view radio {
+    min-width: 16px;
+    min-height: 16px;
+    padding: 0;
+    border: 1px solid @borders;
+    border-radius: 100%;
+    background-color: @theme_base_color;
+    background-image: none;
+    transition: background-color 120ms ease, box-shadow 120ms ease;
+}
+
+radiobutton radio:hover,
+treeview.view radio:hover {
+    border-color: shade(@borders, 0.82);
+}
+
+radiobutton radio:checked,
+treeview.view radio:checked {
+    background-color: @theme_selected_bg_color;
+    border-color: @theme_selected_bg_color;
+    box-shadow: inset 0 0 0 4px @theme_base_color;
+}
+
+radiobutton radio:disabled,
+treeview.view radio:disabled {
+    background-color: @insensitive_base_color;
+    border-color: shade(@borders, 1.05);
+}
+
+radiobutton radio:checked:disabled,
+treeview.view radio:checked:disabled {
+    background-color: alpha(@theme_selected_bg_color, 0.5);
+    box-shadow: inset 0 0 0 4px @insensitive_base_color;
+}
+
+checkbutton:selected,
+radiobutton:selected {
+    color: @theme_selected_fg_color;
+}
+
+checkbutton:selected check,
+radiobutton:selected radio {
+    border-color: alpha(white, 0.75);
+}
+
+/* ------------------------------------------------------------------ *
+ * Switches                                                           *
+ * ------------------------------------------------------------------ */
+
+switch {
+    min-width: 40px;
+    min-height: 20px;
+    padding: 0;
+    border: 1px solid @borders;
+    border-radius: 12px;
+    background-color: shade(@theme_bg_color, 0.92);
+    background-image: none;
+    color: transparent;
+    transition: background-color 140ms ease, border-color 140ms ease;
+}
+
+switch:checked {
+    background-color: @theme_selected_bg_color;
+    border-color: shade(@theme_selected_bg_color, 0.9);
+}
+
+switch:disabled {
+    background-color: @insensitive_bg_color;
+    border-color: shade(@borders, 1.05);
+}
+
+switch slider {
+    min-width: 16px;
+    min-height: 16px;
+    margin: 1px;
+    border: none;
+    border-radius: 100%;
+    background-color: @theme_base_color;
+    box-shadow: 0 1px 2px alpha(black, 0.25);
+}
+
+switch:checked slider {
+    background-color: @theme_selected_fg_color;
+}
+
+switch:disabled slider {
+    background-color: shade(@theme_base_color, 0.85);
+}
+
+/* ------------------------------------------------------------------ *
+ * Menus, popovers and model buttons                                  *
+ * ------------------------------------------------------------------ */
+
+menu,
+.menu {
+    padding: 4px;
+    border: 1px solid @borders;
+    border-radius: 4px;
+    background-color: @menu_bg_color;
+    color: @menu_fg_color;
+    box-shadow: 0 3px 8px alpha(black, 0.22);
+}
+
+menuitem,
+.menuitem {
+    min-height: 22px;
+    padding: 5px 8px;
+    border-radius: 3px;
+    color: @menu_fg_color;
+}
+
+menuitem:hover,
+.menuitem:hover {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+menuitem:disabled,
+.menuitem:disabled {
+    color: @insensitive_fg_color;
+}
+
+menuitem accelerator,
+.menuitem accelerator {
+    color: alpha(@menu_fg_color, 0.55);
+}
+
+menuitem:hover accelerator {
+    color: alpha(@theme_selected_fg_color, 0.8);
+}
+
+menuitem arrow,
+.menuitem arrow {
+    min-width: 12px;
+    min-height: 12px;
+    color: alpha(@menu_fg_color, 0.7);
+}
+
+menuitem:hover arrow {
+    color: @theme_selected_fg_color;
+}
+
+menu separator {
+    margin: 4px 2px;
+    background-color: @separator;
+}
+
+menubar {
+    padding: 0;
+    background-color: @theme_bg_color;
+    color: @theme_fg_color;
+    box-shadow: none;
+}
+
+menubar > menuitem {
+    min-height: 24px;
+    padding: 4px 10px;
+    border-radius: 0;
+    background-color: transparent;
+    color: @theme_fg_color;
+}
+
+menubar > menuitem:hover {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+popover.background {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+popover.background > contents {
+    padding: 6px;
+    border: 1px solid @borders;
+    border-radius: 4px;
+    background-color: @popover_bg_color;
+    color: @popover_fg_color;
+    box-shadow: 0 3px 8px alpha(black, 0.22);
+}
+
+popover.background > arrow {
+    border: 1px solid @borders;
+    background-color: @popover_bg_color;
+}
+
+popover.background separator {
+    margin: 4px 2px;
+    background-color: @separator;
+}
+
+popover modelbutton,
+popover button {
+    min-height: 24px;
+    padding: 4px 8px;
+    border-radius: 3px;
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: @popover_fg_color;
+}
+
+popover modelbutton:hover,
+popover button:hover {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+modelbutton.flat:hover,
+menuitem.button.flat:hover {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+/* ------------------------------------------------------------------ *
+ * Toolbars, notebook and tab bars                                    *
+ * ------------------------------------------------------------------ */
+
+toolbar {
+    padding: 4px;
+    background-color: @theme_bg_color;
+    background-image: none;
+    color: @theme_fg_color;
+    box-shadow: none;
+}
+
+toolbar separator {
+    background-color: @separator;
+}
+
+toolbar.horizontal > separator {
+    min-width: 1px;
+    margin: 4px 2px;
+}
+
+toolbar.vertical > separator {
+    min-height: 1px;
+    margin: 2px 4px;
+}
+
+toolbar.osd {
+    padding: 6px;
+    border: 1px solid alpha(white, 0.1);
+    border-radius: 4px;
+    background-color: @osd_bg_color;
+    color: @osd_fg_color;
+}
+
+notebook > header {
+    padding: 2px;
+    border-color: @borders;
+    background-color: @theme_bg_color;
+}
+
+notebook > header.top {
+    border-bottom: 1px solid @borders;
+}
+
+notebook > header.bottom {
+    border-top: 1px solid @borders;
+}
+
+notebook > header.left {
+    border-right: 1px solid @borders;
+}
+
+notebook > header.right {
+    border-left: 1px solid @borders;
+}
+
+notebook > header > tabs > tab {
+    min-height: 24px;
+    padding: 5px 12px;
+    border: 1px solid transparent;
+    border-radius: 3px 3px 0 0;
+    background-color: transparent;
+    color: alpha(@theme_fg_color, 0.75);
+}
+
+notebook > header > tabs > tab:hover {
+    background-color: alpha(@theme_fg_color, 0.06);
+    color: @theme_fg_color;
+}
+
+notebook > header > tabs > tab:checked {
+    background-color: @theme_base_color;
+    border-color: @borders;
+    border-bottom-color: @theme_base_color;
+    color: @theme_fg_color;
+}
+
+notebook > header > tabs > tab button.flat {
+    min-width: 18px;
+    min-height: 18px;
+    padding: 0;
+    margin-left: 6px;
+    border-radius: 100%;
+}
+
+notebook > stack {
+    border: 1px solid @borders;
+    border-top: none;
+    background-color: @theme_base_color;
+}
+
+notebook > header.top > tabs > tab:checked {
+    margin-bottom: -1px;
+}
+
+notebook > header.bottom > tabs > tab {
+    border-radius: 0 0 3px 3px;
+}
+
+notebook > header.bottom > tabs > tab:checked {
+    margin-top: -1px;
+}
+
+/* ------------------------------------------------------------------ *
+ * Views, lists, tree views and sidebars                             *
+ * ------------------------------------------------------------------ */
+
+.view,
+iconview,
+treeview.view,
+textview text {
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+}
+
+.view:selected,
+iconview:selected,
+treeview.view:selected,
+textview text selection {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+.view:disabled,
+iconview:disabled,
+treeview.view:disabled {
+    background-color: @insensitive_base_color;
+    color: @insensitive_fg_color;
+}
+
+treeview.view {
+    border-left-color: @borders;
+    border-top-color: @borders;
+}
+
+treeview.view:selected:focus,
+treeview.view:selected {
+    border-radius: 0;
+}
+
+treeview.view header button {
+    min-height: 26px;
+    padding: 4px 8px;
+    border: none;
+    border-right: 1px solid @borders;
+    border-bottom: 1px solid @borders;
+    border-radius: 0;
+    background-color: @theme_bg_color;
+    color: @theme_fg_color;
+    box-shadow: none;
+    font-weight: normal;
+}
+
+treeview.view header button:hover {
+    background-color: shade(@theme_bg_color, 0.97);
+}
+
+treeview.view header button:active {
+    background-color: shade(@theme_bg_color, 0.94);
+}
+
+treeview.view header button:last-child {
+    border-right: none;
+}
+
+treeview.view accelerator {
+    color: alpha(@theme_fg_color, 0.6);
+}
+
+treeview.view expander {
+    color: alpha(@theme_fg_color, 0.65);
+}
+
+row,
+list row {
+    padding: 4px;
+    border-radius: 0;
+    background-color: transparent;
+    color: @theme_fg_color;
+}
+
+row:hover,
+list row:hover {
+    background-color: alpha(@theme_fg_color, 0.06);
+}
+
+row:selected,
+list row:selected {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+row:selected label,
+list row:selected label {
+    color: @theme_selected_fg_color;
+}
+
+list {
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+}
+
+list > separator {
+    background-color: @separator;
+}
+
+.sidebar,
+stacksidebar,
+placessidebar {
+    background-color: shade(@theme_bg_color, 0.97);
+    color: @theme_fg_color;
+}
+
+.sidebar list,
+stacksidebar list,
+placessidebar list {
+    background-color: transparent;
+}
+
+.sidebar row,
+stacksidebar row,
+placessidebar row {
+    min-height: 28px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.sidebar row:hover,
+stacksidebar row:hover,
+placessidebar row:hover {
+    background-color: alpha(@theme_fg_color, 0.08);
+}
+
+.sidebar row:selected,
+stacksidebar row:selected,
+placessidebar row:selected {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+placessidebar .sidebar-icon {
+    color: alpha(@theme_fg_color, 0.75);
+}
+
+placessidebar row:selected .sidebar-icon {
+    color: @theme_selected_fg_color;
+}
+
+filechooser .dialog-action-box,
+filechooser .sidebar {
+    border-color: @borders;
+}
+
+/* ------------------------------------------------------------------ *
+ * Scrollbars                                                         *
+ * ------------------------------------------------------------------ */
+
+scrollbar {
+    background-color: transparent;
+    border: none;
+}
+
+scrollbar trough {
+    border: none;
+    border-radius: 6px;
+    background-color: alpha(@theme_fg_color, 0.08);
+}
+
+scrollbar slider {
+    min-width: 8px;
+    min-height: 8px;
+    margin: 2px;
+    border: none;
+    border-radius: 6px;
+    background-color: @scrollbar_slider;
+    background-clip: padding-box;
+}
+
+scrollbar slider:hover {
+    background-color: @scrollbar_slider_hover;
+}
+
+scrollbar slider:hover:active {
+    background-color: @scrollbar_slider_active;
+}
+
+scrollbar slider:disabled {
+    background-color: transparent;
+}
+
+scrollbar.overlay-indicator:not(.dragging):not(.hovering) {
+    border-color: transparent;
+    background-color: transparent;
+    opacity: 0.45;
+}
+
+scrollbar.overlay-indicator:not(.dragging):not(.hovering) slider {
+    min-width: 4px;
+    min-height: 4px;
+    margin: 0;
+    background-color: alpha(@theme_fg_color, 0.6);
+}
+
+scrollbar.horizontal slider {
+    min-width: 40px;
+}
+
+scrollbar.vertical slider {
+    min-height: 40px;
+}
+
+scrollbar button {
+    min-width: 12px;
+    min-height: 12px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    color: alpha(@theme_fg_color, 0.65);
+    box-shadow: none;
+}
+
+scrollbar button:hover {
+    background-color: alpha(@theme_fg_color, 0.10);
+    color: @theme_fg_color;
+}
+
+scrollbar button:active {
+    background-color: alpha(@theme_fg_color, 0.16);
+}
+
+/* ------------------------------------------------------------------ *
+ * Scales, progress bars and level bars                              *
+ * ------------------------------------------------------------------ */
+
+scale {
+    min-height: 16px;
+    min-width: 16px;
+    padding: 4px;
+}
+
+scale trough {
+    min-width: 4px;
+    min-height: 4px;
+    border: none;
+    border-radius: 4px;
+    background-color: shade(@theme_bg_color, 0.9);
+}
+
+scale highlight {
+    border-radius: 4px;
+    background-color: @theme_selected_bg_color;
+}
+
+scale slider {
+    min-width: 16px;
+    min-height: 16px;
+    margin: -6px;
+    border: 1px solid shade(@borders, 0.95);
+    border-radius: 100%;
+    background-color: @theme_base_color;
+    box-shadow: 0 1px 2px alpha(black, 0.2);
+}
+
+scale slider:hover {
+    background-color: @theme_base_color;
+    border-color: @theme_selected_bg_color;
+}
+
+scale slider:active {
+    background-color: @theme_selected_bg_color;
+    border-color: @theme_selected_bg_color;
+}
+
+scale:disabled trough {
+    background-color: @insensitive_bg_color;
+}
+
+scale:disabled highlight {
+    background-color: alpha(@theme_selected_bg_color, 0.4);
+}
+
+scale:disabled slider {
+    background-color: @insensitive_bg_color;
+    border-color: shade(@borders, 1.05);
+}
+
+scale marks,
+scale value {
+    color: alpha(@theme_fg_color, 0.55);
+    font-size: 8pt;
+}
+
+scale.horizontal indicator {
+    min-height: 4px;
+    min-width: 1px;
+    background-color: alpha(@theme_fg_color, 0.35);
+}
+
+scale.vertical indicator {
+    min-height: 1px;
+    min-width: 4px;
+    background-color: alpha(@theme_fg_color, 0.35);
+}
+
+progressbar {
+    min-height: 6px;
+    color: alpha(@theme_fg_color, 0.7);
+    font-size: 9pt;
+}
+
+progressbar trough {
+    min-width: 4px;
+    min-height: 6px;
+    border: none;
+    border-radius: 4px;
+    background-color: shade(@theme_bg_color, 0.9);
+}
+
+progressbar progress {
+    min-width: 4px;
+    min-height: 6px;
+    border: none;
+    border-radius: 4px;
+    background-color: @theme_selected_bg_color;
+}
+
+progressbar.osd {
+    min-height: 4px;
+    background-color: transparent;
+}
+
+progressbar.osd trough {
+    background-color: alpha(white, 0.15);
+}
+
+progressbar.osd progress {
+    background-color: @theme_selected_fg_color;
+}
+
+progressbar:disabled progress {
+    background-color: alpha(@theme_selected_bg_color, 0.4);
+}
+
+levelbar block {
+    min-height: 4px;
+    min-width: 4px;
+    border: none;
+    border-radius: 2px;
+    background-color: shade(@theme_bg_color, 0.9);
+}
+
+levelbar block.high,
+levelbar block.full {
+    background-color: @success_color;
+}
+
+levelbar block.low {
+    background-color: @warning_color;
+}
+
+levelbar block.empty {
+    background-color: alpha(@theme_fg_color, 0.12);
+}
+
+levelbar trough {
+    padding: 2px;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+/* ------------------------------------------------------------------ *
+ * Calendars                                                          *
+ * ------------------------------------------------------------------ */
+
+calendar {
+    padding: 4px;
+    border: 1px solid @borders;
+    border-radius: 3px;
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+}
+
+calendar:selected {
+    border-radius: 3px;
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+calendar.header {
+    border-bottom: 1px solid @borders;
+    background-color: @theme_bg_color;
+}
+
+calendar.button {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+calendar.highlight {
+    color: alpha(@theme_fg_color, 0.6);
+    font-weight: bold;
+}
+
+calendar:indeterminate {
+    color: alpha(@theme_fg_color, 0.35);
+}
+
+/* ------------------------------------------------------------------ *
+ * Infobars, tooltips, status bars and OSD                           *
+ * ------------------------------------------------------------------ */
+
+infobar {
+    border: 1px solid @borders;
+    border-radius: 3px;
+}
+
+infobar.info,
+infobar.question,
+infobar.warning,
+infobar.error {
+    border: none;
+    color: white;
+}
+
+infobar.info {
+    background-color: @question_color;
+}
+
+infobar.question {
+    background-color: @question_color;
+}
+
+infobar.warning {
+    background-color: @warning_color;
+}
+
+infobar.error {
+    background-color: @error_color;
+}
+
+infobar button {
+    border-color: alpha(white, 0.35);
+    background-color: alpha(white, 0.18);
+    color: white;
+}
+
+infobar button:hover {
+    background-color: alpha(white, 0.28);
+}
+
+tooltip {
+    padding: 5px 8px;
+    border: 1px solid alpha(white, 0.1);
+    border-radius: 3px;
+    background-color: @tooltip_bg_color;
+    background-image: none;
+    color: @tooltip_fg_color;
+    box-shadow: 0 2px 6px alpha(black, 0.35);
+}
+
+tooltip label {
+    color: @tooltip_fg_color;
+}
+
+statusbar {
+    padding: 2px 6px;
+    background-color: @theme_bg_color;
+    color: alpha(@theme_fg_color, 0.8);
+}
+
+statusbar frame > border {
+    border: none;
+}
+
+.osd,
+.osd .background {
+    background-color: @osd_bg_color;
+    color: @osd_fg_color;
+}
+
+.osd toolbar {
+    background-color: transparent;
+}
+
+/* ------------------------------------------------------------------ *
+ * Links, spinners and misc                                           *
+ * ------------------------------------------------------------------ */
+
+link,
+*:link {
+    color: @link_color;
+}
+
+*:visited {
+    color: @link_visited_color;
+}
+
+link:hover,
+*:link:hover {
+    color: @accent_hover_color;
+}
+
+spinner {
+    min-width: 16px;
+    min-height: 16px;
+    color: @theme_selected_bg_color;
+}
+
+spinner:disabled {
+    color: @insensitive_fg_color;
+}
+
+@keyframes spin {
+    to { -gtk-icon-transform: rotate(1turn); }
+}
+
+spinner {
+    background-image: none;
+    opacity: 0;
+    -gtk-icon-source: -gtk-icontheme("process-working-symbolic");
+}
+
+spinner:checked {
+    opacity: 1;
+    animation: spin 1s linear infinite;
+}
+
+spinner:checked:disabled {
+    opacity: 0.5;
+}
+
+expander arrow {
+    min-width: 12px;
+    min-height: 12px;
+    color: alpha(@theme_fg_color, 0.7);
+}
+
+expander arrow:hover {
+    color: @theme_fg_color;
+}
+
+expander arrow:checked {
+    color: @theme_fg_color;
+}
+
+placessidebar row.sidebar-placeholder-row {
+    padding: 0 8px;
+    min-height: 2px;
+    background-color: @theme_selected_bg_color;
+}
+
+.shortcut-bar {
+    background-color: @theme_bg_color;
+}
+
+/* ------------------------------------------------------------------ *
+ * GTK 3 compatibility aliases for older applications                 *
+ * ------------------------------------------------------------------ */
+
+.header-bar {
+    background-color: @headerbar_bg_color;
+    color: @headerbar_fg_color;
+}
+
+.header-bar:backdrop {
+    background-color: @headerbar_backdrop_color;
+}
+
+.header-bar .title {
+    font-weight: bold;
+    color: @headerbar_fg_color;
+}
+
+.header-bar .button {
+    background-color: transparent;
+    border-color: transparent;
+    color: @headerbar_fg_color;
+    box-shadow: none;
+}
+
+.header-bar .button:hover {
+    background-color: alpha(white, 0.12);
+}
+
+.header-bar .button:active {
+    background-color: alpha(black, 0.16);
+    box-shadow: inset 0 -2px 0 0 alpha(@headerbar_fg_color, 0.85);
+}
+
+.toolbar {
+    background-color: @theme_bg_color;
+    color: @theme_fg_color;
+}
+
+.entry {
+    border: 1px solid @borders;
+    border-radius: 3px;
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+}
+
+.entry:focus {
+    border-color: @theme_selected_bg_color;
+}
+
+.button {
+    border-radius: 4px;
+    background-color: @button_bg_color;
+    color: @theme_fg_color;
+}
+
+.button:hover {
+    background-color: @button_hover_bg_color;
+}
+
+.button:active,
+.button:checked {
+    background-color: @button_active_bg_color;
+}
+
+.menu {
+    border: 1px solid @borders;
+    background-color: @menu_bg_color;
+    color: @menu_fg_color;
+}
+
+.menuitem:hover {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+.view {
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+}
+
+/* ------------------------------------------------------------------ *
+ * Backdrop / unfocused refinements                                   *
+ * ------------------------------------------------------------------ */
+
+button:backdrop {
+    background-color: shade(@button_bg_color, 0.99);
+    border-color: @unfocused_borders;
+    color: alpha(@theme_fg_color, 0.85);
+}
+
+button:backdrop:disabled {
+    background-color: @insensitive_bg_color;
+    border-color: transparent;
+}
+
+entry:backdrop:focus {
+    border-color: shade(@theme_selected_bg_color, 1.05);
+}
+
+notebook > header > tabs > tab:backdrop {
+    color: alpha(@theme_fg_color, 0.6);
+}
+
+notebook > header > tabs > tab:backdrop:checked {
+    color: alpha(@theme_fg_color, 0.85);
+}
+
+treeview.view:backdrop:selected {
+    background-color: shade(@theme_selected_bg_color, 1.08);
+}
+
+menu:backdrop,
+popover.background > contents:backdrop {
+    box-shadow: 0 2px 5px alpha(black, 0.16);
+}
